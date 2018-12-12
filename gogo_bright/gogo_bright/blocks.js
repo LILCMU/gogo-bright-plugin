@@ -61,7 +61,7 @@ Blockly.Blocks['gogo_bright.motor_action_power'] = {
 	}
 };
 
-Blockly.Blocks['gogo_bright.motor_action_thisway'] = {
+Blockly.Blocks['gogo_bright.motor_action_cw'] = {
 	init: function () {
 		this.setColour(Blockly.Msg.COLOR_MOTOR)
 		this.appendDummyInput()
