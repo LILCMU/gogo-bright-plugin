@@ -37,6 +37,6 @@ Blockly.Msg.SERVO = "servo"
 Blockly.Msg.SERVO_TALK_TO = "talk to servo"
 Blockly.Msg.SERVO_SET_HEADING = "set servo heading"
 Blockly.Msg.MOTOR_SET_HEADING_TOOLTIP = "Sets servo angle of selected servo(s). Values from 0-180."
-Blockly.Msg.SERVO_CW_TURN = "turn Servo CW"
-Blockly.Msg.SERVO_CCW_TURN = "turn Servo CCW"
+Blockly.Msg.SERVO_CW_TURN = "turn servo CW"
+Blockly.Msg.SERVO_CCW_TURN = "turn servo CCW"
 
