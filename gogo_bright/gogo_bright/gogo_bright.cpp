@@ -226,11 +226,11 @@ bool GOGO_BRIGHT::setOutputPower(int power)
 	return wireWriteDataByte(CMD_MOTOR_PWR, 0, 0, power);
 }
 
-bool GOGO_BRIGHT::turnOutputON(void)
+bool GOGO_BRIGHT::turnOutputOn(void)
 {
 	return wireWriteDataByte(CMD_MOTOR_ONOFF, 0, 1);
 }
-bool GOGO_BRIGHT::turnOutputOFF(void)
+bool GOGO_BRIGHT::turnOutputOff(void)
 {
 	return wireWriteDataByte(CMD_MOTOR_ONOFF, 0, 0);
 }
@@ -240,7 +240,7 @@ bool GOGO_BRIGHT::turnOutputCW(void)
 	return wireWriteDataByte(CMD_MOTOR_DIR, 0, 1);
 }
 
-bool GOGO_BRIGHT::turnOutputCCw(void)
+bool GOGO_BRIGHT::turnOutputCCW(void)
 {
 	return wireWriteDataByte(CMD_MOTOR_DIR, 0, 0);
 }

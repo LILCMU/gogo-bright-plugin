@@ -31,8 +31,8 @@ using std::string;
 //* servo
 #define CMD_SERVO_SETH 9
 #define CMD_SERVO_ACTIVE 14
-#define CMD_SERVO_CW 15
-#define CMD_SERVO_CCW 16
+#define CMD_SERVO_CCW 15
+#define CMD_SERVO_CW 16
 #define CMD_SERVO_SET_ANGLE 17
 //* motor
 #define CMD_MOTOR_ACTIVE 7
@@ -90,11 +90,11 @@ class GOGO_BRIGHT : public Device
 	// //? set output power
 	bool setOutputPower(int power);
 	// //? turn outputs on or off
-	bool turnOutputON(void);
-	bool turnOutputOFF(void);
+	bool turnOutputOn(void);
+	bool turnOutputOff(void);
 	// //? turn outputs direction
 	bool turnOutputCW(void);
-	bool turnOutputCCw(void);
+	bool turnOutputCCW(void);
 	bool reverseOutputDirection(void);
 
 	//* ********************* Servo functions *********************

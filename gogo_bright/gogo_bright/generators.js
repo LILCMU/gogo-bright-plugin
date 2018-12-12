@@ -30,7 +30,7 @@ Blockly.JavaScript['gogo_bright.action_motor'] = function () {
 
 Blockly.JavaScript['gogo_bright.motor_action_turn'] = function () {
 	var dropdownTurn = this.getFieldValue('turn')
-	var code = 'DEV_I2C0.GOGO_BRIGHT().' + (dropdownTurn == 'on' ? 'turnOutputON' : 'turnOutputOFF') + '();\n'
+	var code = 'DEV_I2C0.GOGO_BRIGHT().' + (dropdownTurn == 'on' ? 'turnOutputOn' : 'turnOutputOff') + '();\n'
 	return code;
 }
 
