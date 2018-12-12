@@ -16,6 +16,7 @@ Blockly.Blocks["gogo_bright.input_sensor"] = {
 		this.setPreviousStatement(false);
 		this.setNextStatement(false);
 		this.setColour(Blockly.Msg.COLOR_SENSOR)
+		this.setHelpUrl('https://code.gogoboard.org/')
 	}
 };
 
@@ -28,8 +29,8 @@ Blockly.Blocks['gogo_bright.action_motor'] = {
 			.appendField(Blockly.Msg.MOTOR_TALK_TO)
 			.appendField(new Blockly.FieldCheckbox('FALSE'), 'a').appendField('A ')
 			.appendField(new Blockly.FieldCheckbox('FALSE'), 'b').appendField('B ')
-			.appendField(new Blockly.FieldCheckbox('FALSE'), 'c').appendField('C ')
-			.appendField(new Blockly.FieldCheckbox('FALSE'), 'd').appendField('D')
+			// .appendField(new Blockly.FieldCheckbox('FALSE'), 'c').appendField('C ')
+			// .appendField(new Blockly.FieldCheckbox('FALSE'), 'd').appendField('D')
 
 		this.setPreviousStatement(true, null)
 		this.setNextStatement(true, null)
@@ -109,7 +110,7 @@ Blockly.Blocks['gogo_bright.servo_seth'] = {
 		this.setInputsInline(true)
 		this.setPreviousStatement(true)
 		this.setNextStatement(true)
-		this.setTooltip('')
+		this.setTooltip(Blockly.Msg.MOTOR_SET_HEADING_TOOLTIP)
 	}
 }
 

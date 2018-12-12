@@ -15,7 +15,6 @@ GOGO_BRIGHT::GOGO_BRIGHT()
 void GOGO_BRIGHT::init(void)
 {
 	first_read = true;
-	// illuminance = 0;
 	// sensor_values;
 	state = s_detect;
 }

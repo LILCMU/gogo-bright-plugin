@@ -58,8 +58,6 @@ class GOGO_BRIGHT : public Device
 	TickType_t tickcnt, polling_tickcnt;
 	bool first_read;
 	bool i2c_bus_flag = 0;
-	// double illuminance;
-	// double calc_lux(unsigned int ch0, unsigned int ch1);
 
 	I2CDev *i2c;
 	int sensor_values[4];
@@ -81,7 +79,6 @@ class GOGO_BRIGHT : public Device
 	bool prop_read(int index, char *value);
 	bool prop_write(int index, char *value);
 	// method
-	double get_illuminance(void);
 
 	//* ********************* Input port functions *********************
 	//? get sensors value from input port 1-4
