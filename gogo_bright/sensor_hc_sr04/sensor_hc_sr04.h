@@ -8,7 +8,7 @@ using std::string;
 #include "device.h"
 #include "i2c-dev.h"
 
-#define SENSOR_HC_SR04_POLLING_MS 1000
+#define SENSOR_HC_SR04_POLLING_MS 200
 
 #define SENSOR_HC_SR04_I2C_ADDRESS 0x42
 
@@ -28,6 +28,7 @@ class SENSOR_HC_SR04 : public Device
 	enum
 	{
 		s_detect,
+		s_get_sensor,
 		s_error,
 		s_wait
 	} state;
@@ -35,8 +36,10 @@ class SENSOR_HC_SR04 : public Device
 	TickType_t tickcnt, polling_tickcnt;
 	bool first_read;
 	bool i2c_bus_flag = 0;
+	bool time_to_read_value = false;
 
 	I2CDev *i2c;
+	int distance;
 
 	bool wireWriteDataByte(uint8_t cmd, uint8_t param1);
 	bool wireWriteDataByte(uint8_t cmd, uint8_t param1, uint8_t param2);

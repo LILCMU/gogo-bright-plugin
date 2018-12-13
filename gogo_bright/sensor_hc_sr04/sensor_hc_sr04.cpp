@@ -15,6 +15,7 @@ SENSOR_HC_SR04::SENSOR_HC_SR04()
 void SENSOR_HC_SR04::init(void)
 {
 	first_read = true;
+	distance = 0;
 	state = s_detect;
 }
 
@@ -25,22 +26,22 @@ int SENSOR_HC_SR04::prop_count(void)
 
 bool SENSOR_HC_SR04::prop_name(int index, char *name)
 {
-	// if (index == 0)
-	// {
-	// 	snprintf(name, DEVICE_PROP_NAME_LEN_MAX, "%s", "Distance value");
-	// 	return true;
-	// }
+	if (index == 0)
+	{
+		snprintf(name, DEVICE_PROP_NAME_LEN_MAX, "%s", "Distance value");
+		return true;
+	}
 	// not supported
 	return false;
 }
 
 bool SENSOR_HC_SR04::prop_unit(int index, char *unit)
 {
-	// if (index == 0)
-	// {
-	// 	snprintf(unit, DEVICE_PROP_UNIT_LEN_MAX, "%s", "Centimeters"); //? default unit
-	// 	return true;
-	// }
+	if (index == 0)
+	{
+		snprintf(unit, DEVICE_PROP_UNIT_LEN_MAX, "%s", "Centimeters"); //? default unit
+		return true;
+	}
 
 	// not supported
 	return false;
@@ -48,11 +49,11 @@ bool SENSOR_HC_SR04::prop_unit(int index, char *unit)
 
 bool SENSOR_HC_SR04::prop_attr(int index, char *attr)
 {
-	// if (index == 0)
-	// {
-	// 	get_attr_str(attr, PROP_ATTR_READ_FLAG | PROP_ATTR_TYPE_NUMBER_FLAG); // read only, number
-	// 	return true;
-	// }
+	if (index == 0)
+	{
+		get_attr_str(attr, PROP_ATTR_READ_FLAG | PROP_ATTR_TYPE_NUMBER_FLAG); // read only, number
+		return true;
+	}
 
 	// not supported
 	return false;
@@ -60,11 +61,11 @@ bool SENSOR_HC_SR04::prop_attr(int index, char *attr)
 
 bool SENSOR_HC_SR04::prop_read(int index, char *value)
 {
-	// if (index == 0)
-	// {
-	// 	snprintf(value, DEVICE_PROP_VALUE_LEN_MAX, "%f", distance);
-	// 	return true;
-	// }
+	if (index == 0)
+	{
+		snprintf(value, DEVICE_PROP_VALUE_LEN_MAX, "%d", distance);
+		return true;
+	}
 
 	return false;
 }
@@ -96,11 +97,27 @@ void SENSOR_HC_SR04::process(Driver *drv)
 			error = false;
 			// get current tickcnt
 			tickcnt = get_tickcnt();
-			state = s_wait;
+			state = s_get_sensor;
 		}
 		else //* try on other i2c bus
 		{
 			state = s_error;
+		}
+		break;
+	case s_get_sensor:
+		if (is_tickcnt_elapsed(tickcnt, 50))
+		{
+			byte = REG_SPECIAL_PORT_VALUE;
+			i2c->read(channel, address, &byte, 1, &data[0], 1);
+
+			byte = REG_SPECIAL_PORT_VALUE + 1;
+			i2c->read(channel, address, &byte, 1, &data[1], 1);
+
+			distance = (data[0] << 8) + data[1];
+			
+			initialized = true;
+			tickcnt = polling_tickcnt;
+			state = s_wait;
 		}
 		break;
 	case s_error:
@@ -142,15 +159,10 @@ int SENSOR_HC_SR04::readDistance(int selectUnit)
 		return 0;
 	}
 
-	vTaskDelay(250 / portTICK_PERIOD_MS); //? wait 250ms for ultasonic to read value
-	
-	byte = REG_SPECIAL_PORT_VALUE;
-	i2c->read(channel, address, &byte, 1, &data[0], 1);
+	// time_to_read_value = true;
+	// vTaskDelay(100 / portTICK_PERIOD_MS); //? wait 100ms for ultasonic to read value
 
-	byte = REG_SPECIAL_PORT_VALUE + 1;
-	i2c->read(channel, address, &byte, 1, &data[1], 1);
-
-	return (data[0] << 8) + data[1];
+	return distance;
 }
 
 //* ************* I2C functions *************
