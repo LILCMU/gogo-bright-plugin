@@ -3,6 +3,11 @@ Blockly.Msg.COLOR_SENSOR = "#db3f8d"
 
 Blockly.Msg.SENSOR_SENSOR = "เซ็นเซอร์"
 
+Blockly.Msg.SENSOR_IS = "เป็น"
+Blockly.Msg.SENSOR_COLOR_GREEN = "สีเขียว"
+Blockly.Msg.SENSOR_COLOR_YELLOW = "สีเหลือง"
+Blockly.Msg.SENSOR_COLOR_RED = "สีแดง"
+
 // ********************* Motor ********************* //
 Blockly.Msg.COLOR_MOTOR = "#f3a73c"
 
