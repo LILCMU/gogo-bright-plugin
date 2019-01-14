@@ -6,10 +6,32 @@ const filterNumber = function(number) {
 
 Blockly.JavaScript['gogo_bright.input_sensor'] = function(block) {
 	return [
-		'DEV_I2C1.GOGO_BRIGHT().readInput(' + block.getFieldValue('sensor') + ')',
+		'DEV_I2C1.GOGO_BRIGHT().readInput(' + block.getFieldValue('SENSOR') + ')',
 		Blockly.JavaScript.ORDER_ATOMIC
 	];
 };
+
+Blockly.JavaScript['gogo_bright.input_sensor_color_is'] = function (block) {
+    // var dropdownSensor = this.getFieldValue('SENSOR')
+	var dropdownColor = this.getFieldValue('COLOR')
+	var sensorValue = 'DEV_I2C1.GOGO_BRIGHT().readInput(' + block.getFieldValue('SENSOR') + ')'
+    var code = ''
+    switch (dropdownColor) {
+      case 'green':
+        code = '(' + sensorValue + ' < 300)'
+        break
+      case 'yellow':
+        code = '((' + sensorValue + ' >= 300) and (' + sensorValue + ' <= 700))'
+        break
+      case 'red':
+        code = '(' + sensorValue + ' > 700)'
+        break
+      default:
+        break
+    }
+    return [code, Blockly.JavaScript.ORDER_ATOMIC]
+  }
+
 
 // ********************* Motor ********************* //
 

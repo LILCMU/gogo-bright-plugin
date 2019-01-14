@@ -1,15 +1,15 @@
 // ********************* Sensor ********************* //
 
 Blockly.Blocks["gogo_bright.input_sensor"] = {
-	init: function() {
+	init: function () {
 
 		var sensor_ports = [];
-		for (var i = 1;i <= 4; i++) {
+		for (var i = 1; i <= 4; i++) {
 			sensor_ports.push([String(i), String(i)]);
 		}
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.SENSOR_SENSOR)
-			.appendField(new Blockly.FieldDropdown(sensor_ports), 'sensor');
+			.appendField(new Blockly.FieldDropdown(sensor_ports), 'SENSOR');
 
 		this.setOutput(true, 'Number');
 		this.setInputsInline(true);
@@ -20,6 +20,23 @@ Blockly.Blocks["gogo_bright.input_sensor"] = {
 	}
 };
 
+Blockly.Blocks['gogo_bright.input_sensor_color_is'] = {
+	init: function () {
+		var sensor_ports = [];
+		for (var i = 1; i <= 4; i++) {
+			sensor_ports.push([String(i), String(i)]);
+		}
+		this.appendDummyInput()
+			.appendField(Blockly.Msg.SENSOR_SENSOR)
+			.appendField(new Blockly.FieldDropdown(sensor_ports), 'SENSOR')
+			.appendField(Blockly.Msg.SENSOR_IS)
+			.appendField(new Blockly.FieldDropdown([[Blockly.Msg.SENSOR_COLOR_GREEN, 'green'], [Blockly.Msg.SENSOR_COLOR_YELLOW, 'yellow'], [Blockly.Msg.SENSOR_COLOR_RED, 'red']]), 'COLOR')
+		this.setOutput(true, 'Boolean')
+		this.setColour(Blockly.Msg.COLOR_SENSOR)
+		this.setHelpUrl('https://code.gogoboard.org/')
+	}
+}
+
 // ********************* Motor ********************* //
 
 Blockly.Blocks['gogo_bright.action_motor'] = {
@@ -29,8 +46,8 @@ Blockly.Blocks['gogo_bright.action_motor'] = {
 			.appendField(Blockly.Msg.MOTOR_TALK_TO)
 			.appendField(new Blockly.FieldCheckbox('FALSE'), 'a').appendField('A ')
 			.appendField(new Blockly.FieldCheckbox('FALSE'), 'b').appendField('B ')
-			// .appendField(new Blockly.FieldCheckbox('FALSE'), 'c').appendField('C ')
-			// .appendField(new Blockly.FieldCheckbox('FALSE'), 'd').appendField('D')
+		// .appendField(new Blockly.FieldCheckbox('FALSE'), 'c').appendField('C ')
+		// .appendField(new Blockly.FieldCheckbox('FALSE'), 'd').appendField('D')
 
 		this.setPreviousStatement(true, null)
 		this.setNextStatement(true, null)
