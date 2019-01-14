@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <math.h>
 #include <locale>
 #include "esp_system.h"
@@ -317,6 +318,9 @@ bool GOGO_BRIGHT::wireWriteDataByte(uint8_t cmd, uint8_t param1)
 		return false;
 	}
 
+	// ***** Sleep for 0.8 ms *****
+	usleep(800);
+
 	data[0] = CATEGORY_CMD;
 	data[1] = cmd;
 	data[2] = param1;
@@ -332,6 +336,9 @@ bool GOGO_BRIGHT::wireWriteDataByte(uint8_t cmd, uint8_t param1, uint8_t param2)
 	{
 		return false;
 	}
+
+	// ***** Sleep for 0.8 ms *****
+	usleep(800);
 
 	data[0] = CATEGORY_CMD;
 	data[1] = cmd;
@@ -349,6 +356,9 @@ bool GOGO_BRIGHT::wireWriteDataByte(uint8_t cmd, uint8_t param1, uint8_t param2,
 	{
 		return false;
 	}
+
+	// ***** Sleep for 0.8 ms *****
+	usleep(800);
 
 	data[0] = CATEGORY_CMD;
 	data[1] = cmd;
