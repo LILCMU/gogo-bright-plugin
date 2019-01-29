@@ -48,4 +48,6 @@ Blockly.Msg.SERVO_CCW_TURN = "turn servo CCW"
 Blockly.Msg.COLOR_RELAY = "#c38328"
 Blockly.Msg.RELAY_TURN = "turn relay"
 Blockly.Msg.RELAY_TALK_TO = "at output port #"
+Blockly.Msg.RELAY_END = "(Active Low)"
+
 Blockly.Msg.RELAY_TOOLTIP = "Turn on/off selected output (servo) port"

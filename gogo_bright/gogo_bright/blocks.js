@@ -170,7 +170,8 @@ Blockly.Blocks['gogo_bright.action_relay'] = {
 			.appendField(Blockly.Msg.RELAY_TURN)
 			.appendField(new Blockly.FieldDropdown([[Blockly.Msg.MOTOR_ON, 'on'], [Blockly.Msg.MOTOR_OFF, 'off']]), 'turn')
 			.appendField(Blockly.Msg.RELAY_TALK_TO)
-			.appendField(new Blockly.FieldDropdown(servo_ports), 'PORT');
+			.appendField(new Blockly.FieldDropdown(servo_ports), 'PORT')
+			.appendField(Blockly.Msg.RELAY_END);
 			
 		this.setPreviousStatement(true, null)
 		this.setNextStatement(true, null)
