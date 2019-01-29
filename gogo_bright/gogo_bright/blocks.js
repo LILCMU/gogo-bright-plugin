@@ -154,3 +154,26 @@ Blockly.Blocks['gogo_bright.servo_turn_ccw'] = {
 		this.setTooltip('')
 	}
 }
+
+// ********************* Other : Relay ********************* //
+
+Blockly.Blocks['gogo_bright.action_relay'] = {
+	init: function () {
+
+		var servo_ports = [];
+		for (var i = 1; i <= 4; i++) {
+			servo_ports.push([String(i), String(i)]);
+		}
+
+		this.setColour(Blockly.Msg.COLOR_RELAY)
+		this.appendDummyInput()
+			.appendField(Blockly.Msg.RELAY_TURN)
+			.appendField(new Blockly.FieldDropdown([[Blockly.Msg.MOTOR_ON, 'on'], [Blockly.Msg.MOTOR_OFF, 'off']]), 'turn')
+			.appendField(Blockly.Msg.RELAY_TALK_TO)
+			.appendField(new Blockly.FieldDropdown(servo_ports), 'PORT');
+			
+		this.setPreviousStatement(true, null)
+		this.setNextStatement(true, null)
+		this.setTooltip(Blockly.Msg.RELAY_TOOLTIP)
+	}
+}

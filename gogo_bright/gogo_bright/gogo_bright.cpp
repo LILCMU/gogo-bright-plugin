@@ -291,6 +291,20 @@ bool GOGO_BRIGHT::setServoAngle(int head_angle)
 	return wireWriteDataByte(CMD_SERVO_SET_ANGLE, 0, 0, head_angle);
 }
 
+bool GOGO_BRIGHT::setServoDuty(int port, int percentage)
+{
+	if (port < 0 || port > 4)
+		return false;
+
+	if (percentage < 0 || percentage > 100)
+		return false;
+	if (port > 0) {
+		port = 1 << (port-1);
+	}
+
+	return wireWriteDataByte(CMD_SERVO_SET_DUTY, port, 0, percentage);
+}
+
 bool GOGO_BRIGHT::turnServoCW(int cw_angle)
 {
 	if (cw_angle < 0 || cw_angle > 180)
@@ -318,8 +332,8 @@ bool GOGO_BRIGHT::wireWriteDataByte(uint8_t cmd, uint8_t param1)
 		return false;
 	}
 
-	// ***** Sleep for 0.8 ms *****
-	usleep(800);
+	// ***** Sleep for 1.5 ms *****
+	usleep(1500);
 
 	data[0] = CATEGORY_CMD;
 	data[1] = cmd;
@@ -337,8 +351,8 @@ bool GOGO_BRIGHT::wireWriteDataByte(uint8_t cmd, uint8_t param1, uint8_t param2)
 		return false;
 	}
 
-	// ***** Sleep for 0.8 ms *****
-	usleep(800);
+	// ***** Sleep for 1.5 ms *****
+	usleep(1500);
 
 	data[0] = CATEGORY_CMD;
 	data[1] = cmd;
@@ -357,8 +371,8 @@ bool GOGO_BRIGHT::wireWriteDataByte(uint8_t cmd, uint8_t param1, uint8_t param2,
 		return false;
 	}
 
-	// ***** Sleep for 0.8 ms *****
-	usleep(800);
+	// ***** Sleep for 1.5 ms *****
+	usleep(1500);
 
 	data[0] = CATEGORY_CMD;
 	data[1] = cmd;

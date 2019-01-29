@@ -34,6 +34,8 @@ using std::string;
 #define CMD_SERVO_CCW 15
 #define CMD_SERVO_CW 16
 #define CMD_SERVO_SET_ANGLE 17
+#define CMD_SERVO_SET_DUTY 19
+
 //* motor
 #define CMD_MOTOR_ACTIVE 7
 #define CMD_MOTOR_ONOFF 2
@@ -102,6 +104,8 @@ class GOGO_BRIGHT : public Device
 	bool talkToServo(string servo_port);
 	//? set servos head to input head_angle
 	bool setServoAngle(int head_angle);
+	//? set duty to servo ports
+	bool setServoDuty(int port, int percentage);
 	//? turn servos clockwise by input angle
 	bool turnServoCW(int cw_angle);
 	//? turn servos counter-clockwise by input angle

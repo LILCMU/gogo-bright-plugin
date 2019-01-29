@@ -107,3 +107,10 @@ Blockly.JavaScript['gogo_bright.servo_turn_ccw'] = function (block) {
 	var code = `DEV_I2C1.GOGO_BRIGHT().turnServoCCW(${filterNumber(valueHeading)});\n`
 	return code
 }
+
+// ********************* Other : Relay ********************* //
+
+Blockly.JavaScript['gogo_bright.action_relay'] = function(block) {
+	var code = `DEV_I2C1.GOGO_BRIGHT().relayTurns(${block.getFieldValue('PORT')}, ${(block.getFieldValue('turn')=='on') ? 100 : 0});\n`
+	return code
+};

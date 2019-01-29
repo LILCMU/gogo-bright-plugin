@@ -44,3 +44,8 @@ Blockly.Msg.MOTOR_SET_HEADING_TOOLTIP = "ตั้งค่าองศาขอ
 Blockly.Msg.SERVO_CW_TURN = "หมุนหัวเซอร์โวตามเข็ม"
 Blockly.Msg.SERVO_CCW_TURN = "หมุนหัวเซอร์โวทวนเข็ม"
 
+// ********************* Relay ********************* //
+Blockly.Msg.COLOR_RELAY = "#c38328"
+Blockly.Msg.RELAY_TURN = "สั่ง"
+Blockly.Msg.RELAY_TALK_TO = "รีเลย์ ที่พอร์ทเอ้าต์พุต"
+Blockly.Msg.RELAY_TOOLTIP = "สั่งานเปิดหรือปิดการทำงานของรีเลย์ตามเอ้าต์พุต (เซอร์โว) พอร์ทที่เลือก"
