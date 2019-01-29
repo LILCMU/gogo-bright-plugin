@@ -298,6 +298,7 @@ bool GOGO_BRIGHT::setServoDuty(int port, int percentage)
 
 	if (percentage < 0 || percentage > 100)
 		return false;
+		
 	if (port > 0) {
 		port = 1 << (port-1);
 	}
