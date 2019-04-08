@@ -63,7 +63,7 @@ bool SENSOR_HC_SR04::prop_read(int index, char *value)
 {
 	if (index == 0)
 	{
-		snprintf(value, DEVICE_PROP_VALUE_LEN_MAX, "%d", distance);
+		snprintf(value, DEVICE_PROP_VALUE_LEN_MAX, "%f", distance);
 		return true;
 	}
 
@@ -80,7 +80,7 @@ void SENSOR_HC_SR04::process(Driver *drv)
 {
 	// I2CDev *i2c = (I2CDev *)drv;
 	i2c = (I2CDev *)drv;
-	uint8_t byte, data[2];
+	uint8_t byte, data[4];
 
 	switch (state)
 	{
@@ -107,13 +107,19 @@ void SENSOR_HC_SR04::process(Driver *drv)
 	case s_get_sensor:
 		if (is_tickcnt_elapsed(tickcnt, 50))
 		{
-			byte = REG_SPECIAL_PORT_VALUE;
-			i2c->read(channel, address, &byte, 1, &data[0], 1);
+			// byte = REG_SPECIAL_PORT_VALUE;
+			// i2c->read(channel, address, &byte, 1, &data[0], 1);
 
-			byte = REG_SPECIAL_PORT_VALUE + 1;
-			i2c->read(channel, address, &byte, 1, &data[1], 1);
+			// byte = REG_SPECIAL_PORT_VALUE + 1;
+			// i2c->read(channel, address, &byte, 1, &data[1], 1);
 
-			distance = (data[0] << 8) + data[1];
+			for (int i = 0; i < 4; i++)
+			{
+				byte = REG_SPECIAL_PORT_VALUE + i;
+				i2c->read(channel, address, &byte, 1, &data[i], 1);
+			}
+
+			distance = *(float *)&data;
 			
 			initialized = true;
 			tickcnt = polling_tickcnt;
@@ -146,22 +152,13 @@ void SENSOR_HC_SR04::process(Driver *drv)
 }
 
 //* ************* Input port functions *************
-
-int SENSOR_HC_SR04::readDistance(int selectUnit)
+int SENSOR_HC_SR04::startUltrasonic(int selectSensorType, int selectUnit)
 {
-	uint8_t byte, data[2];
+	return wireWriteDataByte(CMD_SPECIAL_ULTRASONIC, selectSensorType, selectUnit);
+}
 
-	if (selectUnit < 0 || selectUnit > 1)
-		return 0;
-
-	if (!wireWriteDataByte(CMD_SPECIAL_ULTRASONIC, selectUnit))
-	{
-		return 0;
-	}
-
-	// time_to_read_value = true;
-	// vTaskDelay(100 / portTICK_PERIOD_MS); //? wait 100ms for ultasonic to read value
-
+float SENSOR_HC_SR04::readDistance()
+{
 	return distance;
 }
 
@@ -175,6 +172,9 @@ bool SENSOR_HC_SR04::wireWriteDataByte(uint8_t cmd, uint8_t param1)
 	{
 		return false;
 	}
+
+	// ***** Sleep for 1.5 ms *****
+	usleep(1500);
 
 	data[0] = CATEGORY_CMD;
 	data[1] = cmd;
@@ -192,6 +192,9 @@ bool SENSOR_HC_SR04::wireWriteDataByte(uint8_t cmd, uint8_t param1, uint8_t para
 		return false;
 	}
 
+	// ***** Sleep for 1.5 ms *****
+	usleep(1500);
+
 	data[0] = CATEGORY_CMD;
 	data[1] = cmd;
 	data[2] = param1;
@@ -208,6 +211,9 @@ bool SENSOR_HC_SR04::wireWriteDataByte(uint8_t cmd, uint8_t param1, uint8_t para
 	{
 		return false;
 	}
+
+	// ***** Sleep for 1.5 ms *****
+	usleep(1500);
 
 	data[0] = CATEGORY_CMD;
 	data[1] = cmd;

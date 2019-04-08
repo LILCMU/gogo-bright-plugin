@@ -15,7 +15,7 @@ using std::string;
 //* ////////////////////////////////////
 //* Register map
 #define REG_GOGOBRIGHT_ID 0
-#define REG_SPECIAL_PORT_VALUE 21
+#define REG_SPECIAL_PORT_VALUE 28
 
 #define CMD_SPECIAL_ULTRASONIC 21
 
@@ -39,7 +39,7 @@ class SENSOR_HC_SR04 : public Device
 	bool time_to_read_value = false;
 
 	I2CDev *i2c;
-	int distance;
+	float distance;
 
 	bool wireWriteDataByte(uint8_t cmd, uint8_t param1);
 	bool wireWriteDataByte(uint8_t cmd, uint8_t param1, uint8_t param2);
@@ -59,7 +59,8 @@ class SENSOR_HC_SR04 : public Device
 	bool prop_write(int index, char *value);
 
 	//* ********************* I2C port functions *********************
-	int readDistance(int selectUnit);
+	int startUltrasonic(int selectSensorType, int selectUnit);
+	float readDistance();
 };
 
 #endif
