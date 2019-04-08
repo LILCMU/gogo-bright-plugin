@@ -3,6 +3,10 @@ Blockly.Msg.COLOR_SENSOR = "#db3f8d"
 
 Blockly.Msg.SENSOR_SENSOR = "Sensor"
 
+Blockly.Msg.SENSOR_IS = "is"
+Blockly.Msg.SENSOR_COLOR_GREEN = "Green"
+Blockly.Msg.SENSOR_COLOR_YELLOW = "Yellow"
+Blockly.Msg.SENSOR_COLOR_RED = "Red"
 
 // ********************* Motor ********************* //
 Blockly.Msg.COLOR_MOTOR = "#f3a73c"
@@ -40,3 +44,10 @@ Blockly.Msg.MOTOR_SET_HEADING_TOOLTIP = "Sets servo angle of selected servo(s). 
 Blockly.Msg.SERVO_CW_TURN = "turn servo CW"
 Blockly.Msg.SERVO_CCW_TURN = "turn servo CCW"
 
+// ********************* Relay ********************* //
+Blockly.Msg.COLOR_RELAY = "#c38328"
+Blockly.Msg.RELAY_TURN = "turn relay"
+Blockly.Msg.RELAY_TALK_TO = "at output port #"
+Blockly.Msg.RELAY_END = "(Active Low)"
+
+Blockly.Msg.RELAY_TOOLTIP = "Turn on/off selected output (servo) port"

@@ -3,6 +3,11 @@ Blockly.Msg.COLOR_SENSOR = "#db3f8d"
 
 Blockly.Msg.SENSOR_SENSOR = "เซ็นเซอร์"
 
+Blockly.Msg.SENSOR_IS = "เป็น"
+Blockly.Msg.SENSOR_COLOR_GREEN = "สีเขียว"
+Blockly.Msg.SENSOR_COLOR_YELLOW = "สีเหลือง"
+Blockly.Msg.SENSOR_COLOR_RED = "สีแดง"
+
 // ********************* Motor ********************* //
 Blockly.Msg.COLOR_MOTOR = "#f3a73c"
 
@@ -39,3 +44,9 @@ Blockly.Msg.MOTOR_SET_HEADING_TOOLTIP = "ตั้งค่าองศาขอ
 Blockly.Msg.SERVO_CW_TURN = "หมุนหัวเซอร์โวตามเข็ม"
 Blockly.Msg.SERVO_CCW_TURN = "หมุนหัวเซอร์โวทวนเข็ม"
 
+// ********************* Relay ********************* //
+Blockly.Msg.COLOR_RELAY = "#c38328"
+Blockly.Msg.RELAY_TURN = "สั่ง"
+Blockly.Msg.RELAY_TALK_TO = "รีเลย์ ที่พอร์ทเอ้าต์พุต"
+Blockly.Msg.RELAY_END = "(Active Low)"
+Blockly.Msg.RELAY_TOOLTIP = "สั่งานเปิดหรือปิดการทำงานของรีเลย์ตามเอ้าต์พุต (เซอร์โว) พอร์ทที่เลือก"
