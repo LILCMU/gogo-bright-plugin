@@ -2,7 +2,7 @@
 Blockly.JavaScript['gogo_bright.start_ultrasonic'] = function (block) {
 	var dropdown_select_sensor_type = block.getFieldValue('select_sensor_type')
 	var dropdown_select_unit = block.getFieldValue('select_unit')
-	var code = 'DEV_I2C1.SENSOR_HC_SR04().startUltrasonic(' + dropdown_select_sensor_type + ', ' + dropdown_select_unit + ');\n'
+	var code = 'DEV_I2C1.SENSOR_HC_SR04().startUltrasonic(' + dropdown_select_sensor_type + ', ' + dropdown_select_unit + ');\nvTaskDelay(200 / portTICK_RATE_MS);\n'
 	return code
 };
 
